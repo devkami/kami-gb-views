@@ -3,7 +3,7 @@ CREATE OR REPLACE
 ALGORITHM = UNDEFINED VIEW `tb_invoice` AS
 SELECT DISTINCT
     CAST(`empresa`.`cnpj` AS CHAR charset utf8mb4) AS `distributorDocument`,
-    IFNULL(CAST(DATE_FORMAT(`nota_fiscal`.`dt_emissao`, '%d/%m/%Y') AS CHAR charset utf8mb4), 'null') AS `invoiceDate`,
+    `nota_fiscal`.`dt_emissao`, '%d/%m/%Y' AS `invoiceDate`,
     IFNULL(CAST(`empresa`.`cod_empresa` AS CHAR charset utf8mb4), '0') AS `salesChannelCode`,
     IFNULL(CAST(`nota_fiscal`.`cnpj` AS CHAR charset utf8mb4), '0') AS `document`,
     IFNULL(CAST(`nota_fiscal`.`nome_cliente` AS CHAR charset utf8mb4), '0') AS `fullname`,
