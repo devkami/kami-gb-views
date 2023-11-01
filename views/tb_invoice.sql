@@ -4,7 +4,7 @@ ALGORITHM = UNDEFINED VIEW `tb_invoice` AS
 SELECT DISTINCTROW
     CAST(`empresa`.`cnpj` AS CHAR charset utf8mb4) AS `distributorDocument`,
     `nota_fiscal`.`dt_emissao` AS `invoiceDate`,
-    IFNULL(CAST(`ramo_atividade`.`desc_abrev` AS CHAR charset utf8mb4), '0') AS `salesChannelCode`,
+    IFNULL(CAST(GetSalesChannel (`nota_fiscal`.`cod_colaborador`, `nota_fiscal`.`dt_emissao`) AS CHAR charset utf8mb4), '0') AS `salesChannelCode`,
     IFNULL(CAST(`nota_fiscal`.`cnpj` AS CHAR charset utf8mb4), '0') AS `document`,
     IFNULL(CAST(`nota_fiscal`.`nome_cliente` AS CHAR charset utf8mb4), '0') AS `fullname`,
     IFNULL(CAST(`ramo_atividade`.`desc_abrev` AS CHAR charset utf8mb4), '0') AS `businessSegment`,
